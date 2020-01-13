@@ -1,0 +1,23 @@
+typedef struct PTnode {
+  int N_dim;
+  int label;
+  int pid;
+  int depth;
+  NodeStates state;
+  int nu;
+  int nu_init;
+  int nu_valid;
+  int nu_viable;
+  double h_init;
+  double h;
+  double res_norm;
+  double *z;
+  double *T_init;
+  double *z_init;
+  double valid_path_length;
+  double viable_path_length;
+  int viable_index;
+  int valid_index;
+  int max_children;
+  struct PTnode **child;
+} PTnode;
