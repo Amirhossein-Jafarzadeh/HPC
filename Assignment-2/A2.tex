@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+\usepackage{enumitem}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\title{Assignment 2\\HPC}
+\author{By Amirhossein Jafarzadeh Ghazi}
+\date{March 17, 2020}
+\begin{document}
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+\hfill \break
+\textbf{Pseudo-code}
+\begin{itemize}
+\item \textbf{Initialization:}\\
+\textbf{Input:} The number of zombies :NofZ, The number of susceptible individuals: NofS, The size of rectangular grid: M by N\\\\
+$index_0\leftarrow Choose\:randomly\:between\:1\:and\:M \times N$\\
+\textbf{for} $i=1:NofZ+NofS$\\
+\tab $r\leftarrow Choose\:randomly\:between\:1\:and\:M \times N-i$\\
+\tab $Put\:r+i\:as\:an\:index\:between\:index_i\:and\:index_{i+1}\:$\\
+\tab\tab\tab\tab\tab$such\:that:\:index_i<(r+i)<index_{i+1}$\\
+\textbf{end for}\\
+\textbf{Output:} List of indexes which is sorted for all individuals\\
+\item \textbf{The main program:}\\
+\textbf{Input:} The number of zombies :NofZ, The number of susceptible individuals: NofS, Time steps: T\\\\
+Place NofZ+NofS number of individuals on the rectangular grid(initialization)\\
+\textbf{for} $i=0:NofZ+NofS$\\
+\tab assign x and y dimension to individual number i\\
+\textbf{end for}\\
+\textbf{for} $i=0:NofZ+NofS$\\
+\tab assign state of being zombie or being susceptible individual to individual number i\\
+\textbf{end for}\\
+print initial state of individuals(x and y dimension and being zombie or susceptible)\\
+\textbf{for} $i=0:T$\\
+\tab \textbf{for} $j=0:NofZ+NofS$\\
+\tab \tab move individual number i one time\\
+\tab \textbf{end for}\\
+\textbf{end for}\\
+\textbf{for} $i=0:NofZ+NofS$\\
+\tab assign x and y dimension to individuals\\
+\textbf{end for}\\
+print final state of individuals(x and y dimension and being zombie or susceptible)\\
+\textbf{Output:} List of individuals after T steps\\
+\end{itemize}
+\textbf{Implementation:}\\
+I've wrote a code in which individuals move randomly on a rectangular grid. This grid has a size of M by N and there is no interaction between individuals.
+This code has a main function and 5 sub-functions. This sub-functions are:
+\begin{itemize}
+\item initialization: this function places individuals on a rectangular grid randomly.
+\item assign\_dimensions: this function assign related x and y dimension to each individual.
+\item assign\_status: every individual is zombie or susceptible, so this function randomly assign the state of being zombie or susceptible for each individual.
+\item movement: this function randomly move individual only on time
+\item print\_individuals: this function print the list of individuals
+\end{itemize}
+\textbf{Unit testing:}
+\begin{enumerate}
+\item Uniformly distribution of individuals in the grid: we expect that all lattice sites should be occupied with the same probability.\\
+We test this hypothesis: we assume a $10\times10$ grid and do the initialization function for 1000000 times. All lattice sites have the probability of 1 percent to be occupied.(For doing this test run the file "Test-Unit-1.c")
+\item Distance to the initial point: we expect that the distance to the initial point after $m$ steps will be increased according to $\sqrt{m}$ plot.\\
+We test this hypothesis and it is completely true. We move for 20 time steps in the grid with size of 10000 by 10000 and you can in the table and plot below that our expectation is right:(For doing this test run the file "Test-Unit-2.c")
+{\centering
+\includegraphics[scale=0.5]{Plot}\\}
+\hfill \break
+The slope of this graph is about $0.5$ which makes sense and confirm our expectation because we expect:
+$$Distance\:from\:initial\:point \sim \sqrt{m}$$
+And take logarithm of both side:
+$$Log(Distance)\sim 0.5Log(m)$$
+\item Uniformly distribution of zombies and susceptible individuals: we expect the occupation of lattice sites by zombies and susceptible individual must be equally probable.
+We test this hypothesis: we assume the grid with size of $10\times10$ and one zombie and one susceptible individual. All lattice sites have the same probability of being occupied by a zombie or susceptible individual.(For doing this test run the file "Test-Unit-3.c")
+\item Boundaries: We expect that all individuals only move inside the grid.
+We've checked all boundaries. We put some individuals on the boundaries and we monitor their move. As a result, all individuals move on the boundaries or move towards the inside of the grid.(For doing this test run the file "Test-Unit-4.c")
+\item Movement on the boundaries: We expect individuals on the corner to move only in two directions and these two directions must be equally probable. In addition, for another individuals on the boundaries(except corners) we have three directions to move, so movements to these three direction are expected to be equally probable.
+We test these two hypotheses and they are completely right.(For doing this test run the file "Test-Unit-5.c")
+\end{enumerate}
+\end{document}
