@@ -1,0 +1,19 @@
+Your code looks good (could do with more comments, though!) and you wrote some good tests. Keep working on accuracy and completeness of the presentation in the report and push the tests to be a accurate and demanding as possible. Just imagine you are writing this code for a nuclear reactor and a mistake (like a misinterpreted test result) can lead to a disaster!
+Overall 75/100.
+
+On the report:
+* The phrase "Put r + i as an index between index_i and index_{i+1}" is unclear. The variables index_i are not explicitly assigned in this pseudo-code, and "in between" is not unique. I assume you mean something like "map r onto the r-th number in the set (1 .. NM excluding previously assigned indices index_j for j=1..i-1)". Formulate more accurately!
+* All inputs should be listed for the main code, including N and M. Without those values, you cannot call "initialization" from "main".
+* Make calls to external functions much more explicit in your pseudo-code.
+* You write "assign state of being zombie or being susceptible" but do not specify how. Randomly? In order of appearance on a list? How do you keep the number of zombies fixed to NofZ?
+* A similar remark for "move individual number i one time". Keep in mind that, ideally, somebody other than you should be able to program this algorithm purely based on your pseudo-code. In the current form, there is not enough detail and accuracy.
+* Avoid contractions like "I've" in all writing (except, perhaps, informal emails). Always use math font for math symbols, e.g. "... related $x$ and $y$ dimension ..."
+* Use scientific notation, e.g. "for 1000000 times" -> "for $10^6$ times".
+* "We move for 20 time steps in the grid with size of 10000 by 10000" How often? If you do that for one individual one time, the graph will not be that smooth. You must have averaged either over many experiments or over many individuals in a single experiment (in the absence of interactions, these are equivalent).
+* "we expect the occupation of lattice sites by zombies and susceptible individual must be equally probable" Actually, the probabilities are set by the initial numbers of susceptible and zombified individuals. In your test, you set both equal and then, the statement is correct.
+* Test 4. : you did not specify what happens at the boundaries. Is a move beyond the boundary ignored (i.e. the individual doesn't move at that time step) or is another step generated that is allowed (i.e. the individual will move at every time step)?
+
+On the tests:
+* Be as precise as possible with the tests and the presentation of the results. E.g. for the first test, you print the results to the screen. If the number of grid point is large, this is not good. Why not compute the distribution of the values and plot that? This should produce a Gaussian distribution around the expected mean value. A few lines of computation should allow you to predict its standard deviation, too. Then your test becomes much more stringent: "I expect that the probabilities have a Gaussian distribution around <insert function of N, M and the number of individuals> with a standard deviation of <insert another formula>". The more you push yourself to make each test as strict as possible, the more confidence you will have in your code. This confidence is what will allow you to publish results (and defend your thesis) based on the code!
+* How did you produce the plot for test 2? When I run the code, I just see the final distance. Go the extra mile and construct your tests in such a way that the desired plot is produced - or at least the data file from which the plot can be made with any kind of plot program. I have similar questions about the other tests - the output of the test code does not directly and obviously support the statements in the report.
+
