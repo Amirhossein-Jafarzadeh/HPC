@@ -1,0 +1,61 @@
+\documentclass[12pt]{article}
+\usepackage{enumitem}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\title{Assignment 3\\HPC}
+\author{By Amirhossein Jafarzadeh Ghazi}
+\date{March 30, 2020}
+\begin{document}
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+\hfill \break
+
+In this assignment, I have considered interactions and partitioning in order to parallelization for Zombie Land problem.\\
+To do so, I have made some changes in the movement function. In new movement function, first, for each individual, we should check whether there are some empty nearby lattice sites to occupy or not. If there are some empty lattice sites, individual will move randomly to one of the nearby lattice sites. On the other hand, if there are not any empty lattice sites, it will not move.\\
+Furthermore, I have added two new functions in my code.\\
+\begin{itemize}
+\item \textbf{Interaction function:}\\
+Interaction function checks the nearby lattice sites for each susceptible individual and if there are one or more zombies in the proximity of susceptible individual, so the state of this individual changes to zombie. For the individuals in the corner of rectangular field, there are two nearby lattice sites and for other individuals on the boundaries there are three directions to check. Also this function checks four directions(left, right, up, and down) for other individuals inside the boundaries.\\
+In addition, this function updates the number of zombies and individual after every changes in the state of individuals.
+
+\item \textbf{Partition function:}\\
+First, partition function divides the fields to 1, 2, 3, or 4 partitions based on number of threads we need for parallelization in such a way that each partition has at most one more row than any other partition.\\
+Next, this function specifies the partition in which each individual is. We add a new characteristic for each individual which is a partition number. This variable can be changed after each movement for each individuals.
+\\
+\end{itemize}
+
+\textbf{Pseudo-code for main program:}\\
+\textbf{Inputs:} The number of rows of rectangular field: $M$\\
+The number of columns of rectangular field: $N$\\
+The number of zombies: $NofZ$\\
+The number of susceptible individuals: $NofS$\\
+Time steps(The number of movements): $T$\\
+The number of threads: $NofT$\\\\
+Call initialization function in order to place $NofZ+NofS$ number of individuals on the rectangular grid.\\\\
+\textbf{for} $i=0:NofZ+NofS$\\
+\tab Call assign dimension function in order to assign $i$(row number) and \tab $j$(column number) to individual number $i$.\\
+\textbf{end for}\\\\
+\textbf{for} $i=0:NofZ+NofS$\\
+\tab Call partition function in order to specify the partition number in which \tab individual number $i$ is placed.\\
+\textbf{end for}\\\\
+\textbf{for} $i=0:NofZ+NofS$\\
+\tab Call assign state function in order to assign state of being zombie or \tab being susceptible individual to individual number $i$.\\
+\textbf{end for}\\\\
+Call print function in order to print characteristics of initial(first) step of individuals($i$ and $j$ dimension and being zombie or susceptible).\\\\
+\textbf{for} $i=0:T$\\
+\tab \textbf{for} $j=0:NofZ+NofS$\\
+\tab \tab For partition number $k$($k=1,2,3,4$ according to number of \tab \tab threads) call movement function for individual number $j$ which \tab \tab is in partition number $k$. \\
+\tab \tab call partition function for individual number $j$ after movement.\\
+\tab \textbf{end for}\\
+\tab Call interaction function for checking the state of individual number $j$ \tab after movement.\\
+\textbf{end for}\\\\
+\textbf{for} $i=0:NofZ+NofS$\\
+\tab Call assign dimension function which assigns $i$(row number) and $j$(column \tab number) to individual number $i$.\\
+\textbf{end for}\\\\
+Call print function which prints characteristics of initial(first) step of individuals($i$ and $j$ dimension and being zombie or susceptible).\\\\
+\textbf{Outputs:} The number of zombies and susceptible individuals at the first and last step.\\
+List of individuals' characteristics at the first step and at the last step, after $T$ times movements.\\
+\end{document}
