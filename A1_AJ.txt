@@ -1,0 +1,11 @@
+You compared gcc to icc with and without optimization and up to 4 threads with OpenMP. Unfortunately, you could not try the BLAS library because of problems connecting to the lab.
+I would have liked to see more discussion of the results and more careful writing and typesetting, though. 78/100.
+
+There are some important questions to think about, for instance:
+* Why does the aggressive optimization not give a big speed-up? There is some speed-up for gcc but not for icc. The answer is probably that gcc without optimization gives an executable that does not handle memory efficiently and this improves with optimization. icc is pretty close to optimal even without optimization. You could call this a "law of diminishing return". Keep in mind that, in a code that is more pluriform (in this example there are only additions and multiplications), optimization usually has a much greater effect.
+* Why does the parallelization have such a low efficiency? Probably the overhead is relatively large, even for matrix size 2^16.
+* can you estimate the overhead from these results? You could try a model like
+(parallel wall time) = (serial wall time)/(nr of threads) + (overhead)
+
+Some minor points:
+* Be careful with your type setting. For instance, use single characters for quantities ("$WT$" looks like the product of $W$ and $T$), use a different font for names of functions (e.g. \verb+\log(2)+ shows as $\log(2)$), "$S/n*P$" should be $S/(nP)$.
