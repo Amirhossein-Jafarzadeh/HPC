@@ -103,13 +103,13 @@ int main(int argc, char **argv){
 		other_index=0;
 
 // FILLING MATRIX A WITH RANDOM NUMBERS GENERATED
-	int r=1, o=1;
-	for(int i=1; i<=size; t++){
-		for(j=0;j<=size-i+1;j++){
+	int o=1, d=1;
+	for(int i=1; i<=size; i++){
+		for(int j=0;j<=size-i+1;j++){
 			A[i,j]=other_num[o];
 			A[j,i]=A[i,j];
 			if(i==j)
-				A[i,j]=diag_num[d]
+				A[i,j]=diag_num[d];
 			o++;
 			d++;
 		}
