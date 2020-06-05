@@ -25,7 +25,6 @@ int main(int argc, char **argv){
 	size=1000;
 	samples=100;
 	bins=25;
-	// ... code omitted //
 
 // MASTER RUNNING A ROUND ROBIN OF HOW MANY SAMPLES EACH SLAVE HAS TO CALCULATE
 
@@ -115,8 +114,6 @@ int main(int argc, char **argv){
 		}
 	}
 
-// ... code omitted ...
-
 // COMPUTING ALL EIGENVALUES AND TAKING THE LARGEST
 
 		lwork=-1;
@@ -145,8 +142,6 @@ int main(int argc, char **argv){
 		int *sort_flag=(int*)malloc(samples*sizeof(int)); // Used for storing all of the eigenvalues
 		int *bin_count=(int*)malloc(bins*sizeof(int));
 		double *histo_norm=(double*)malloc(bins*sizeof(double));
-		FILE *data;
-		data=fopen("mat-eig-log.txt","a+");
 
 		int slave_samples;
 		int total_index;
@@ -167,7 +162,7 @@ int main(int argc, char **argv){
 
 		for(int i=0;i<samples;i++)
 			printf("%f \n", ALL_eigens[i]);
-		// ... code omitted
+
 	free(A);
 	free(eigens);
 	ierr = MPI_Finalize();
