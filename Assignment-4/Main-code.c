@@ -4,7 +4,8 @@
 #include <time.h>
 #include <mpi.h>
 #include "mkl.h"
-#define MPI double
+#ifndef OMPI_MPI_H
+#define OMPI_MPI_H
 int main(int argc, char **argv){
 
 // MPI INITIALIZATION
