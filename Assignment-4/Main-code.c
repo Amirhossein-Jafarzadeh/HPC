@@ -4,7 +4,7 @@
 #include <time.h>
 #include <mpi.h>
 #include "mkl.h"
-#define MPI_DOUBLE
+#define MPI_DOUBLE OMPI_PREDEFINED_GLOBAL(MPI_Datatype, ompi_mpi_double)
 int main(int argc, char **argv){
 
 // MPI INITIALIZATION
