@@ -5,6 +5,7 @@
 #include <mpi.h>
 #include "mkl.h"
 #define MPI_DOUBLE OMPI_PREDEFINED_GLOBAL(MPI_Datatype, ompi_mpi_double)
+#define MPI_DOUBLE_INT OMPI_PREDEFINED_GLOBAL(MPI_Datatype, ompi_mpi_double_int)
 int main(int argc, char **argv){
 
 // MPI INITIALIZATION
