@@ -23,7 +23,7 @@ srand(time(NULL));
 	int size, samples, bins;
 	int my_samples;
 
-	size=1000;
+	size=100;
 	samples=100;
 	bins=25;
 
