@@ -162,12 +162,11 @@ srand(time(NULL));
 		}
 		for(int i=0;i<samples;i++)
 			printf("%d-%f \n", i, ALL_eigens[i]);
+		gettimeofday(&stop, NULL);
+  		printf("It took %lu micro seconds\n", (stop.tv_sec - start.tv_sec) * 1000000 + stop.tv_usec - start.tv_usec);
 }
 
 	free(A);
 	free(eigens);
 	ierr = MPI_Finalize();
-	
-	gettimeofday(&stop, NULL);
-  printf("It took %lu micro seconds\n", (stop.tv_sec - start.tv_sec) * 1000000 + stop.tv_usec - start.tv_usec);
 }
