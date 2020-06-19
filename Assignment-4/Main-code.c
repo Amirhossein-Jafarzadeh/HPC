@@ -10,6 +10,9 @@ int main(int argc, char **argv){
 
 	int my_id, root_process, ierr, num_procs;
 	MPI_Status status;
+srand(time(NULL));
+  struct timeval stop, start;
+  gettimeofday(&start, NULL);
 
 	ierr = MPI_Init(&argc, &argv);
 
@@ -161,6 +164,8 @@ int main(int argc, char **argv){
 		for(int i=0;i<samples;i++)
 			printf("%d-%f \n", i, ALL_eigens[i]);
 }
+	gettimeofday(&stop, NULL);
+  printf("It took %lu micro seconds\n", (stop.tv_sec - start.tv_sec) * 1000000 + stop.tv_usec - start.tv_usec);
 	free(A);
 	free(eigens);
 	ierr = MPI_Finalize();
