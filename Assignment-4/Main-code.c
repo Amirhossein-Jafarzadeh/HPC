@@ -160,7 +160,7 @@ int main(int argc, char **argv){
 		}
 
 		for(int i=0;i<samples;i++)
-			printf("%f \n", ALL_eigens[i]);
+			printf("%d-%f \n", i, ALL_eigens[i]);
 
 	free(A);
 	free(eigens);
