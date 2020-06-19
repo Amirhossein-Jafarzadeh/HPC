@@ -158,12 +158,10 @@ int main(int argc, char **argv){
 		for(int g=0;g<my_samples;g++){ // Puts masters eigenvalues in the total array
 			ALL_eigens[total_index+g]=eigens[g];
 		}
-
+}
 		for(int i=0;i<samples;i++)
 			printf("%d-%f \n", i, ALL_eigens[i]);
-
 	free(A);
 	free(eigens);
 	ierr = MPI_Finalize();
-}
 }
