@@ -11,7 +11,7 @@ int main(int argc, char **argv){
 	int my_id, root_process, ierr, num_procs;
 	MPI_Status status;
 
-	//ierr = MPI_Init(&argc, &argv);
+	ierr = MPI_Init(&argc, &argv);
 
 // ALL PROCESSES RUN THEIR INTIALIZATION
 
