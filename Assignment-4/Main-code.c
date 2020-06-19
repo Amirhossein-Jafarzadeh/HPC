@@ -24,7 +24,7 @@ srand(time(NULL));
 	int my_samples;
 
 	size=100;
-	samples=100;
+	samples=1000;
 	bins=25;
 
 // MASTER RUNNING A ROUND ROBIN OF HOW MANY SAMPLES EACH SLAVE HAS TO CALCULATE
