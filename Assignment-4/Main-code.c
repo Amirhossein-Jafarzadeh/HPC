@@ -23,8 +23,8 @@ srand(time(NULL));
 	int size, samples, bins;
 	int my_samples;
 
-	size=1000;
-	samples=1000;
+	size=10;
+	samples=100;
 	bins=25;
 
 // MASTER RUNNING A ROUND ROBIN OF HOW MANY SAMPLES EACH SLAVE HAS TO CALCULATE
